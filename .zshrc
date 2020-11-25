@@ -18,11 +18,6 @@ alias k="kubectl"
 
 [[ $TMUX = "" ]] && export TERM="xterm-256color"
 
-if [ -z "$TMUX" ]
-then
-    tmux attach -t TMUX || tmux new -s TMUX
-fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
