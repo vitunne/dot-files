@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/go/bin:$HOME/.pyenv/shims/:$PATH:
+export PATH=$HOME/bin:/usr/local/bin:$HOME/go/bin:$PATH:
 
 export ZSH="/Users/vitune/.oh-my-zsh"
 
