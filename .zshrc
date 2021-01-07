@@ -1,10 +1,13 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/go/bin:$PATH:
+export PATH=$HOME/bin:/usr/local/bin:$HOME/go/bin:$HOME/.pyenv/shims/:$PATH:
 
 export ZSH="/Users/vitune/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
 
-plugins=(git zsh-syntax-highlighting)
+ZSH_TMUX_AUTOSTART="true"
+ZSH_TMUX_AUTOQUIT="false"
+
+plugins=(git zsh-syntax-highlighting tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -15,8 +18,6 @@ alias upd="brew update && brew upgrade && brew upgrade --cask && brew cleanup"
 alias t="tmux"
 alias n="nvim"
 alias k="kubectl"
-
-[[ $TMUX = "" ]] && export TERM="xterm-256color"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
