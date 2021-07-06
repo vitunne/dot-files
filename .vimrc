@@ -13,6 +13,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
 Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
+Plug 'psliwka/vim-smoothie'
 call plug#end()
 "}}}
 
@@ -55,6 +57,10 @@ nnoremap <C-g> :Rg<Cr>
 
 let g:fzf_layout = { 'down':  '40%'}
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+"}}}
+
+"{{{ vimwiki
+nmap x <Plug>VimwikiToggleListItem
 "}}}
 
 "{{{ lspconfig
@@ -155,3 +161,4 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
 "}}}
+
