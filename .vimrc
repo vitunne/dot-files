@@ -60,7 +60,7 @@ let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --ma
 "}}}
 
 "{{{ vimwiki
-nmap x <Plug>VimwikiToggleListItem
+nmap <Space> <Plug>VimwikiToggleListItem
 "}}}
 
 "{{{ lspconfig

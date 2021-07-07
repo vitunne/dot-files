@@ -31,6 +31,7 @@ alias t="tmux"
 alias n="nvim"
 alias k="kubectl"
 alias h="helm"
+alias kgetall="kubectl get namespace,replicaset,secret,nodes,job,daemonset,statefulset,ingress,configmap,pv,pvc,service,serviceaccounts,deployment,pod"
 alias rustscan='docker run -it --rm --name rustscan cmnatic/rustscan:debian-buster rustscan'
 
 # fzf search
