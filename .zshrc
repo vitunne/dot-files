@@ -1,49 +1,46 @@
-export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/local/bin:$HOME/go/bin:$PATH:$HOME/.cargo/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-export ZSH="/Users/victor.suzdalev/.oh-my-zsh"
+# PATH 
+export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
 
-export EDITOR=nvim
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="gallois"
+# Theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-ZSH_TMUX_AUTOSTART="true"
-ZSH_TMUX_AUTOQUIT="false"
+# Plugins 
+plugins=( git 
+          zsh-autosuggestions
+          zsh-syntax-highlighting
+)
 
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions tmux)
+# Open tmux on startup, requires tmux plugin
+ZSH_TMUX_AUTOSTART=true
 
-### Fix slowness of pastes with zsh-syntax-highlighting.zsh
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
-
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
-### Fix slowness of pastes
+# aliases
+alias v="nvim"
+alias up="brew update && brew upgrade && brew cleanup"
+alias k="kubectl"
+alias h="helm"
+alias r="ranger"
+alias skopeo="skopeo --override-arch amd64 --override-os linux" 
+alias kgetall="kubectl get namespace,replicaset,secret,nodes,job,daemonset,statefulset,ingress,configmap,pv,pvc,service,deployment,pod"
 
 source $ZSH/oh-my-zsh.sh
 
-alias upd="brew update && brew upgrade && brew upgrade --cask && brew cleanup"
-alias t="tmux"
-alias n="nvim"
-alias k="kubectl"
-alias h="helm"
-alias kgetall="kubectl get namespace,replicaset,secret,nodes,job,daemonset,statefulset,ingress,configmap,pv,pvc,service,serviceaccounts,deployment,pod"
-alias rustscan='docker run -it --rm --name rustscan cmnatic/rustscan:debian-buster rustscan'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# fzf search
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# kubernetes prompt helper
-source /usr/local/opt/kube-ps1/share/kube-ps1.sh
-PROMPT='$(kube_ps1)'$PROMPT
-
-# kubectl autocompletion
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-
-# syntax highlighting
-source /Users/victor.suzdalev/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
